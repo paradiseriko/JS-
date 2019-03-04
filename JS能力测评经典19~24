@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--19.实现一个打点计时器，要求
+1、从 start 到 end（包含 start 和 end），每隔 100 毫秒 console.log 一个数字，每次数字增幅为 1
+2、返回的对象中需要包含一个 cancel 方法，用于停止定时操作
+3、第一个数需要立即输出-->
+<script>
+    //方法一
+    function count(start, end) {
+        console.log(start++);
+        var x = setInterval(function() {//setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式
+                if (start <= end) {//setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
+                    console.log(start++);
+                } else {
+                    clearInterval(x);
+                }
+            }, 100);
+        return {
+            cancel: function() {
+                clearInterval(x);
+            }
+        }
+    }
+</script>
+<script>
+    //方法二
+function count(start,end) {
+     if (start<=end){
+        console.log(start);
+        start++;
+        v=setTimeout(function () {
+        count(start,end)},100);}
+    return{cancel:function () {clearTimeout(v);}}
+}
+</script>
+
+<!--20.实现 fizzBuzz 函数，参数 num 与返回值的关系如下：
+1、如果 num 能同时被 3 和 5 整除，返回字符串 fizzbuzz
+2、如果 num 能被 3 整除，返回字符串 fizz
+3、如果 num 能被 5 整除，返回字符串 buzz
+4、如果参数为空或者不是 Number 类型，返回 false
+5、其余情况，返回参数 num-->
+<script>
+    function fizzBuzz(num) {
+        var number = parseInt(num);
+        //这里判断一下类型
+        if(num!=null&&num===number){
+            if(num%3==0&&num%5==0){
+                return 'fizzbuzz';
+            }else if(num%3==0){
+                return 'fizz';
+            }else if(num%5==0){
+                return 'buzz';
+            }else{
+                return num;
+            }
+        }else{
+            return false;
+        }
+    }
+</script>
+
+<!--21.将数组 arr 中的元素作为调用函数 fn 的参数-->
+<script>
+    //方法一
+    function argsAsArray(fn, arr) {
+        return fn.apply(this,arr);//apply将需要传递的参数放入一个数组，传入参数数组即可。
+        //this指向window,但function没有用到this，所以apply里第一个参数随便写什么都可以。null、字符串都可以。
+    }
+</script>
+<script>
+    //方法二
+    function argsAsArray(fn, arr) {
+      return fn.call(fn,arr[0],arr[1],arr[2]);//call需要将传递的参数都列举出来
+    }
+</script>
+
+<!--22.将函数 fn 的执行上下文改为 obj 对象-->
+<script>
+    //方法一
+    function speak(fn, obj) {
+        return fn.apply(obj,[]);//function函数里的this被替换为apply的第一个参数，只需将obj作为apply第一个参数传入。
+    }//apply()第二个参数是数组或类数组，apply方法把这个集合中的元素作为参数传递给被调用的函数。
+</script>
+<script>
+    //方法二
+    function speak(fn,obj) {
+        return fn.bind(obj)();//bind函数只是返回目标函数，并不能调用，所以要用()执行函数。
+    }
+</script>
+
+<!--23.实现函数 functionFunction，调用之后满足如下条件：
+1、返回值为一个函数 f
+2、调用返回的函数 f，返回值为按照调用顺序的参数拼接，拼接字符为英文逗号加一个空格，即 ', '
+3、所有函数的参数数量为 1，且均为 String 类型-->
+<script>
+    function functionFunction(str) {
+         var v=function(s){   //适用两个参数
+             return str+", "+s;
+         };
+         return v;
+    }
+</script>
+
+<!--24.实现函数 makeClosures，调用之后满足如下条件：
+1、返回一个函数数组 result，长度与 arr 相同
+2、运行 result 中第 i 个函数，即 result[i]()，结果与 fn(arr[i]) 相同-->
+<script>
+    //方法一
+    function makeClosures(arr, fn) {
+        var result = [];
+        arr.forEach(function(item, index, arr) {
+            result.push(function() {
+                return fn(item);
+            })
+        });
+        return result;
+    }
+</script>
+<script>
+    //方法二
+    function makeClosures(arr,fn) {
+        var result=[];
+        for (let i=0;i<arr.length;i++){//let 语句声明一个块级作用域的本地变量，并且可选的将其初始化为一个值
+          result[i]=function () {
+              return fn(arr[i]);
+          };
+        }
+        return result;
+    }
+    //let允许你声明一个作用域被限制在块级中的变量、语句或者表达式。与var关键字不同的是，var声明的变量只能是全局或者整个函数块的。
+</script>
+<script>
+    //方法三
+    function makeClosures(arr,fn) {
+        var result = [];
+        for (i = 0; i < arr.length; i++) {
+            result[i] = fn.bind(null, arr[i]);//bind()绑定函数，该方法可传入两个参数，第一个参数作为this，第二个及以后的参数则作为函数的参数调用
+        }
+        return result;
+    }
+</script>
+</body>
+</html>

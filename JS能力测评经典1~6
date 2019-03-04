@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--1.找出元素 item 在给定数组 arr 中的位置,如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1-->
+<script>
+    //第一种方法
+    function indexOf(arr,item) {
+        return arr.indexOf(item);//indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置，如果不存在，则返回 -1
+    }</script>
+<script>
+//第二种方法
+function indexOf(arr, item) {
+    if (Array.prototype.indexOf()) {  //判断当前浏览器是否支持
+        return arr.indexOf(item);//支持则运用indexOf()函数
+    } else { //浏览器不支持则运用for循环
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === item) { //如果数组任意位置存在item
+                return i;//返回item在数组中的位置
+            }
+        }
+    }
+    return - 1;
+}
+</script>
+
+<!--2.计算给定数组 arr 中所有元素的总和，数组中的元素均为 Number 类型-->
+<script>
+    //方法一
+    function sum(arr) {
+        var s = 0;
+        for (var i = 0; i < arr.length; i++) {
+            s += arr[i];//赋值
+        }
+        return s;
+    }
+</script>
+<script>
+ //方法二
+ function sum(arr) {
+     return eval(arr.join("+"));
+ }
+</script>
+
+<!--3.移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组-->
+<script>
+//第一种方法
+    function remove(arr, item) {
+        var v = new Array();
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] !== item) {
+                v.push(arr[i]);//push()可向数组的末尾添加一个或多个元素，并返回新的长度
+            }
+        }
+        return v;
+    }
+</script>
+<script>
+    //第二种方法
+    function remove(arr, item) {
+        var s = new Array();
+        arr.forEach(function(x) {//forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数
+            if (x !== item) {
+                s.push(x);
+            }
+        })
+        return s;
+    }
+</script>
+
+<!--4.移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回 -->
+<script>
+    //方法一
+    function removeWithoutCopy(arr, item) {
+        var s = arr.length
+        for (var i = 0; i < s; i++) {
+            if (arr[0] !== item)
+                arr.push(arr[0]);
+            arr.shift();//删除并返回数组的第一个元素
+
+        }
+        return arr;
+    }
+</script>
+<script>
+    //方法二
+    function removeWithoutCopy(arr, item) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i]==item) {
+                arr.splice(i, 1);//添加或删除数组中的元素,第一个参数规定从何处添加/删除元素，第二个参数规定删除元素的数量
+                i--;//减掉循环的重复值,否则会跳过下一个元素
+            }
+        }
+        return arr;
+    }
+</script>
+<script>
+  //方法三
+  function removeWithoutCopy(arr, item) {
+      for (i = arr.length; i>=0;i--) {
+          if (arr[i] == item) {
+              arr.splice(i, 1);
+          }
+      }
+      return arr;
+  }
+</script>
+
+<!--5.在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组 -->
+<script>
+    //方法一
+    function append(arr, item) {
+        var v = arr.length;
+        var n = new Array();
+        for (i = 0; i < v; i++) {
+            n.push(arr[i]);
+        }
+        n.push(item);
+        return n;
+    }
+</script>
+<script>
+//方法二
+function append(arr, item) {
+    var s = arr.slice(0);//拷贝一个新的数组
+    s.push(item);
+    return s;
+}
+</script>
+<script>
+    //方法三
+    function append(arr,item) {
+      return  arr.concat([item]);//连接多个数组并返回结果
+    }
+</script>
+
+<!--6.删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组-->
+<script>
+    //方法一
+    function truncate(arr) {
+        return arr.slice(0,-1);
+    }
+</script>
+<script>
+    //方法二
+    function truncate(arr) {
+        var s = new Array();
+        for (i = 0; i < arr.length - 1; i++) {
+            s.push(arr[i]);
+        }
+        return s;
+    }
+</script>
+<script>
+    //方法三
+    function trancate(arr) {
+        var c = arr.slice();
+        c.pop();//删除数组的最后一个元素并返回删除的元素
+        return c;
+    }
+</script>
+</body>
+</html>

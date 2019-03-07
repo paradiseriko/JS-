@@ -109,15 +109,44 @@
 3、调用 b 之后，返回一个函数 c, c 的 length 属性值为 1
 4、调用 c 之后，返回的结果与调用 fn 的返回值一致
 5、fn 的参数依次为函数 a, b, c 的调用参数-->
+<script>
+    /*柯里化是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术。
+    * 题目意思是将预定义的函数参数传入curryIt中，当参数全部传入之后，就执行预定义函数。*/
+    //方法一
+    function curryIt(fn) {
+    var length =fn.length;//fn.lengrh获取fn函数的参数个数
+    var args=[];//声明一个空数组去存放参数
+    var result=function (arg) {//返回一个匿名函数接受参数并执行
+        args.push(arg);//将curryIt中括号中的参数放入数组
+        length--;
+     if (length<=0){
+        return fn.apply(this,args);
+     }else {
+         return result;
+     }
+    };
+    return result;
+    }
+</script>
+<script>
+    //方法二
+    function curryIt(fn) {
+     var arr=[];x=fn.length;
+    return function (m) {
+        arr.push(m);
+        //arguments主要用途保存函数参数，它有一个callee属性，该属性指向拥有arguments对象的函数
+        return arr.length<x?arguments.callee: fn.apply(null,arr);//?表判断
+    }
+    }
+</script>
 
-
-
-
-
-
-
-
-
-
+<!--30.返回参数 a 和 b 的逻辑或运算结果
+或运算符“||”的运算规则是：如果第一个运算子的布尔值为true，则返回第一个运算子的值，且不再对第二个运算子求值；
+如果第一个运算子的布尔值为false，则返回第二个运算子的值。-->
+<script>
+    function or(a, b) {
+        return a||b;
+    }
+</script>
 </body>
 </html>

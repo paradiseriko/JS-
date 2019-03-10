@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>
+            <label>Input:</label>
+        </td>
+        <td>
+            <input type="text"  id="TwoToTen" class="asd" placeholder="输入一个二进制非负整数">
+        </td>
+        <td>
+            <input type="button" value="计算二进制转十进制" onclick="base10()">
+        </td>
+        <td>
+            <label id="twoLabel">计算结果</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Input:</label>
+        </td>
+        <td>
+            <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+        </td>
+        <td>
+            <button id="trans-btn">计算十进制转二进制</button>
+        </td>
+        <td>
+            <span id="result">计算结果</span>
+        </td>
+    </tr>
+</table>
+
+<script>
+    function base10() {
+
+        var sourceElement = document.getElementById("TwoToTen");
+        var str = sourceElement.value;
+
+        var c=str.split("").reverse();
+        var x=document.getElementById("twoLabel");
+        var sum=0;
+        for (i=0;i<c.length;i++) {
+            sum+=c[i]*(Math.pow(2,i));
+         }
+        x.innerHTML=sum;
+        document.getElementById("twoLabel").innerHTML=("计算结果为:"+sum);
+    }
+</script>
+
+
+
+
+<script>
+    document.getElementById("trans-btn").onclick=function () {
+        var x=document.getElementById("dec-number").value;
+      dec2bin(x);
+    };
+    function dec2bin(decNumber) {
+        if (decNumber<0){
+           alert("请输入一个非负整数");
+        }else {
+            var q=binary(decNumber);
+            document.getElementById("result").innerHTML=("计算结果为:"+q);
+        }
+    }
+    function binary(num) {
+     var resArray=[];
+     var xresArray=[];
+     i=0;
+     for (;num>0;){
+       resArray.push(num%2);
+       num=parseInt(num/2);
+       i++;
+     }
+     for (j=i-1;j>=0;j--){
+       xresArray.push(resArray[j]);
+     }
+     return xresArray.join().replace(/,/g,"");
+    }
+</script>
+</body>
+</html>

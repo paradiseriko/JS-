@@ -46,6 +46,89 @@
       return new Obj();
     }
 </script>
+<!--   10转2
+1.10/2=5  10%2=0
+2.5/2=2   5%2=1
+3.2/2=1   2%2=0
+4.1<2     1%2=1
+  100转8
+1.100/8=12  100%8=4
+2.12/8=1   12%8=4
+3.1<8   1%8=1
+   1000转8
+1.1000/8=125 1000%8=0
+2.125/8=15   125%8=5
+3.15/8=1    15%8=7
+4.1<8      1%8=1
+     7转2
+(1) 7/2=3  7%2=1
+(2) 3/2=1  3%2=1
+(3) 1/2=0  1%2=1
+
+  二进制1010转10
+1010=1*(2^3)+0*(2^2)+1*(2^1)+0*(2^0)=10
+  十进制转十进制
+54321=5*(10^4)+4*(10^3)+3*(10^2)+2*(10^1)+1*(10^0)=54321
+  二进制转十进制
+1111=1*(2^3)+1*(2^2)+1*(2^1)+1*(2^0)=15 -->
+
+
+<!--33.获取数字 num 二进制形式第 bit 位的值。注意：
+1、bit 从 1 开始
+2、返回 0 或 1
+3、举例：2 的二进制为 10，第 1 位为 0，第 2 位为 1-->
+<script>
+    //方法一
+    function valueAtBit(num, bit) {
+    return(num>>(bit-1))&1;// >>右移运算，&1意味着只输出左操作数的最后一位，而bit从1开始算。
+    }
+</script>
+<script>
+    //方法二
+    function valueAtBit(num, bit) {
+      var s=num.toString(2);//NumberObject.toString(radix),radix可选，规定表示数字的基数。
+        //当 radix 为 2 时，NumberObject 会被转换为二进制值表示的字符串。
+      return s[s.length-bit];//从右向左。下标如果从1开始，为s.length - bit。如果从0开始，为s.length - bit-1
+    }
+</script>
+<script>
+    //方法三
+    function valueAtBit(num, bit) {
+     var arr=num.toString(2).split("").reverse();//split() 方法用于把一个字符串分割成字符串数组.reverse() 方法用于颠倒数组中元素的顺序。
+     return arr[bit-1];
+    }
+</script>
+
+<!--34.给定二进制字符串，将其换算成对应的十进制数字-->
+<script>
+    //方法一
+    function base10(str) {
+     return parseInt(str,2);
+//parseInt方法可以将其它进制转换为十进制，只需要给该方法传入需要转换的字符串和该字符串的进制表示两个参数即可。
+    }
+</script>
+<script>
+   //方法二
+    function base10(str) {
+    var res=str.split("").reverse();
+    var sum=0;
+    for (i=0;i<res.length;i++){
+        sum+=res[i]*(Math.pow(2,i));//Math.pow(x,y) x为底数，y为幂数。
+    }
+    return sum;
+    }
+</script>
+
+<!--35.将给定数字转换成二进制字符串。如果字符串长度不足 8 位，则在前面补 0 到满8位。-->
+<script>
+    //方法一
+    function convertToBinary(num) {
+
+
+    }
+</script>
+
+
 
 
 

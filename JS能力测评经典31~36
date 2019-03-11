@@ -123,55 +123,32 @@
 <script>
     //方法一
     function convertToBinary(num) {
-
-
+    var s=num.toString(2);
+     var v=s.length;
+     if (v<8){
+        var s1="0000000";//声明字符串用于补零。因为目标的2进制数形式最少为一位，因此最多只需要7个0；
+        var s2=s1.slice(0,8-v);//slice截取
+        s=s2+s;
+     }
+      return s;
+    }
+</script>
+<script>
+    //方法二
+    function convertToBinary(num) {
+    var str=num.toString(2);
+    while (str.length<8){
+       str="0"+str;
+    }
+    return str;
     }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--36.求 a 和 b 相乘的值，a 和 b 可能是小数，需要注意结果的精度问题-->
+<script>
+    function multiply(a, b) {
+        return a*b;
+    }
+</script>
 </body>
 </html>

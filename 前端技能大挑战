@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--1.封装函数 f，使 f 的 this 指向指定的对象-->
+<script>
+    //方法一
+    function bindThis(f, oTarget) {
+        return f.bind(oTarget);
+    }
+</script>
+<script>
+    //方法二
+    /* apply:方法能劫持另外一个对象的方法，继承另外一个对象的属性.
+    * Function.apply(obj,args)方法能接收两个参数
+obj：这个对象将代替Function类里this对象
+args：这个是数组，它将作为参数传给Function（args-->arguments）*/
+    function bindThis(f,oTarget) {
+        return function () {
+            return f.apply(oTarget,arguments);//apply的应用，改变当前的作用域至apply(xx,arguments)中的xx，此时this指向的是xx。
+        }         //apply方法是立即执行函数，所以需要放在一个函数里面，到调用的时候再立即执行。arguments是局部变量，必须在函数里才能使用。
+    }
+</script>
+
+<!--2.获取 url 中的参数
+1. 指定参数名称，返回该参数的值 或者 空字符串
+2. 不指定参数名称，返回全部的参数对象 或者 {}
+3. 如果存在多个同名参数，则返回数组-->
+<script>
+    //方法一
+    function getUrlParam(sUrl, sKey) {
+     
+
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

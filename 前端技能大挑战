@@ -32,9 +32,48 @@ args：这个是数组，它将作为参数传给Function（args-->arguments）*
 <script>
     //方法一
     function getUrlParam(sUrl, sKey) {
-     
-
+     for(;oNode1;oNode1=oNode1.parentNode){//随便找一个节点，直到某个祖先节点（或自己）包含另一个节点
+         if (oNode1.contains(oNode2)){//contains()并不是字符串方法，，仅用于判断DOM元素的包含关系，参数是Element类型
+             return oNode1;
+         }
+       }
     }
+</script>
+<script>
+    //方法二
+    function commonParentNode(oNode1, oNode2) {
+       if (oNode1.contains(oNode2)){//在一开始oNode1就不包含于oNode2，那在递归的时候oNode1的父节点也肯定不包含于oNode2。
+          return oNode1;
+       }else{
+           return commonParentNode(oNode1.parentNode,oNode2)
+    }
+    }
+</script>
+
+
+<!--3.如果第二个参数 bUnicode255For1 === true，则所有字符长度为 1
+否则如果字符 Unicode 编码 > 255 则长度为 2-->
+<script>
+    function strLength(s, bUnicode255For1) {
+       if (bUnicode255For1){
+           return s.length;
+       }else {
+           var len=s.length;
+           for (i=0;i<len;i++){
+              if (s.charCodeAt(i)>255){//charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。
+                  len++;    //Unicode 字符代码是一个字母的数字 (如数字 "97" 代表字母 "a")。
+              }//方法 charCodeAt() 与 charAt() 方法执行的操作相似，只不过前者返回的是位于指定位置的字符的编码，而后者返回的是字符子串。
+           }
+           return len;
+       }
+    }
+    /*onkeypress 事件会在键盘按键被按下并释放一个键时发生。
+提示：与 onkeypress 事件的关联的事件发生次序:
+onkeydown
+onkeypress
+onkeyup
+注意： 在所有浏览器中 onkeypress 事件不是适用于所有按键(如： ALT, CTRL, SHIFT, ESC)。
+监听一个用户是否按下按键请使用 onkeydown 事件,所有浏览器都支持 onkeydown 事件。*/
 </script>
 
 

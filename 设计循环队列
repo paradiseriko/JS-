@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设计循环队列</title>
+</head>
+<body>
+<!--循环队列是一种线性数据结构，其操作表现基于 FIFO（先进先出）原则并且队尾被连接在队首之后以形成一个循环。它也被称为“环形缓冲器”。
+你的实现应该支持如下操作：
+MyCircularQueue(k): 构造器，设置队列长度为 k 。
+Front: 从队首获取元素。如果队列为空，返回 -1 。
+Rear: 获取队尾元素。如果队列为空，返回 -1 。
+enQueue(value): 向循环队列插入一个元素。如果成功插入则返回真。
+deQueue(): 从循环队列中删除一个元素。如果成功删除则返回真。
+isEmpty(): 检查循环队列是否为空。
+isFull(): 检查循环队列是否已满。-->
+
+<!--使用双指针记录队列元素位置，双指针初始化为-1，删除元素时验证指针是否重合，是则初始化队列-->
+/**
+* Initialize your data structure here. Set the size of the queue to be k.
+* @param {number} k
+*/
+<script>
+let MyCircularQueue = function(k) {
+this.length=k;
+this.tail=-1;
+this.head=-1;
+this.queue=[];
+};
+</script>
+
+/**
+* Insert an element into the circular queue. Return true if the operation is successful.
+* @param {number} value
+* @return {boolean}
+*/
+<script>
+MyCircularQueue.prototype.enQueue = function(value) {
+if(this.isFull())return false;
+if(this.isEmpty())this.head=0;
+this.tail=(this.tail+1)%this.length;
+this.queue[this.tail]=value;
+return true;
+};
+</script>
+
+/**
+* Delete an element from the circular queue. Return true if the operation is successful.
+* @return {boolean}
+*/
+<script>MyCircularQueue.prototype.deQueue = function() {
+if(!this.isEmpty()){
+if(this.head===this.tail){
+this.head=-1;
+this.tail=-1;
+}else{
+this.head=(this.head+1)%this.length;
+}
+return true;
+}
+return false;
+};
+</script>
+
+/**
+* Get the front item from the queue.
+* @return {number}
+*/
+<script>
+MyCircularQueue.prototype.Front = function() {
+if(!this.isEmpty())return this.queue[this.head];
+return -1;
+};
+</script>
+
+/**
+* Get the last item from the queue.
+* @return {number}
+*/
+<script>
+MyCircularQueue.prototype.Rear = function() {
+if(!this.isEmpty())return this.queue[this.tail];
+return -1;
+};
+</script>
+
+/**
+* Checks whether the circular queue is empty or not.
+* @return {boolean}
+*/
+<script>
+MyCircularQueue.prototype.isEmpty = function() {
+return this.head===-1;
+};
+</script>
+
+/**
+* Checks whether the circular queue is full or not.
+* @return {boolean}
+*/
+<script>
+MyCircularQueue.prototype.isFull = function() {
+return (this.tail+1)%this.length===this.head;
+};
+</script>
+
+/**
+* Your MyCircularQueue object will be instantiated and called as such:
+* var obj = Object.create(MyCircularQueue).createNew(k)
+* var param_1 = obj.enQueue(value)
+* var param_2 = obj.deQueue()
+* var param_3 = obj.Front()
+* var param_4 = obj.Rear()
+* var param_5 = obj.isEmpty()
+* var param_6 = obj.isFull()
+*/
+
+</body>
+</html>

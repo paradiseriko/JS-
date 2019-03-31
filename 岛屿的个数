@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岛屿的个数</title>
+</head>
+<body>
+<!--给定一个由 '1'（陆地）和 '0'（水）组成的的二维网格，计算岛屿的数量。
+一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
+
+示例 1:
+输入:
+11110
+11010
+11000
+00000
+输出: 1
+
+示例 2:
+输入:
+11000
+11000
+00100
+00011
+输出: 3-->
+<script>
+ /*标零法：对矩阵进行循环访问每一个点；
+ * 当这个点为1，岛屿的数量count++，同时使用dfs算法(depth first search)访问周围其他点，将访问过且等于1的点标记为零,这样就能将整个岛屿
+ * 变成零。只需记录对矩阵遍历时进入多少次搜索，就代表有多少个岛屿*/
+ /**
+  * @param {character[][]} grid
+  * @return {number}
+  */
+var numIsland=function (grid) {
+     var count=0;//岛屿数量
+     if (grid.length===0)return count;
+     for (var i=0;i<grid.length;i++){
+         for (var j=0;j<grid[0].length;j++){
+            if (grid[i][j]==='1'){
+                dfsSearch(grid,i,j);
+                count++;
+            }
+         }
+     }
+     return count;
+ };
+function dfsSearch(grid,i,j) {
+ if (i<0||j<0||i>=grid.length||j>=grid[0].length)return;// ||或
+ if (grid[i][j]==='1'){
+     grid[i][j]='0';
+     //“=”是赋值操作符。
+     //“==”是判断值是否相等操作符。
+     //“===”是判断是否完全相等操作符。
+     dfsSearch(grid,i+1,j);//搜索右边
+     dfsSearch(grid,i-1,j);//搜索左边
+     dfsSearch(grid,i,j+1);//搜索下边
+     dfsSearch(grid,i,j-1);//搜索上边
+ }
+}
+</script>
+</body>
+</html>

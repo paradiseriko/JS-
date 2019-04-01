@@ -77,6 +77,52 @@ onkeyup
 </script>
 
 
+<!--4.根据包名，在指定空间中创建对象
+输入描述:
+namespace({a: {test: 1, b: 2}}, 'a.b.c.d')
+输出描述:
+{a: {test: 1, b: {c: {d: {}}}}}-->
+<script>
+    //方法一
+    function namespace(oNamespace, sPackage) {
+     var arr=sPackage.split('.');//split() 方法用于把一个字符串分割成字符串数组
+     var res=oNamespace;//保留对原始对象的引用
+     var len=arr.length;
+     for (var i=0;i<len;i++){
+         if (arr[i]in oNamespace){//空间名在对象中
+             if (typeof oNamespace[arr[i]]!=='object'){//则为原始值
+                 oNamespace[arr[i]]={};//将属性设置为空对象
+             }
+         }else {//空间名不在对象中，建立此空间名属性，赋值为空
+             oNamespace[arr[i]]={};
+         }
+         oNamespace=oNamespace[arr[i]];//将指针指向下一个空间名属性
+     }
+     return res;
+    }
+</script>
+<script>
+    //方法二：递归
+    function namespace(oNamespace, sPackage) {
+      if (sPackage.length<=0)return;
+      var pointer=oNamespace;
+      if (sPackage[0]in oNamespace){
+          if (typeof oNamespace[sPackage[0]]!=="object"){//typeof操作符返回一个字符串，表示未经计算的操作数的类型。
+             oNamespace[sPackage[0]]={};
+          }
+      }else {
+          oNamespace[sPackage[0]]={};
+      }
+     oNamespace=oNamespace[sPackage[0]];
+     namespace(oNamespace,sPackage.slice(2));//命名空间
+     return pointer;
+    }
+</script>
+
+
+
+
+
 
 
 

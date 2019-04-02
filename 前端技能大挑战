@@ -149,7 +149,6 @@ namespace({a: {test: 1, b: 2}}, 'a.b.c.d')
 输出
 {h: 1, e: 1, l: 3, o: 2, w: 1, r: 1, d: 1}-->
 <script>
-    //方法一
     function count(str) {
         var obj = {};
         str.replace(/\S/g, function (s) {

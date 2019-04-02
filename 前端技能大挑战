@@ -159,6 +159,33 @@ namespace({a: {test: 1, b: 2}}, 'a.b.c.d')
 </script>
 
 
+<!--7.数组去重:为 Array 对象添加一个去除重复项的方法.
+输入
+[false, true, undefined, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN]
+输出
+[false, true, undefined, null, NaN, 0, 1, {}, {}, 'a']-->
+<script>
+    Array.prototype.uniq = function() {
+        var resArr = [];
+        var flag = true;
+        //因为NaN不等于NaN所以arr.indexOf(NaN)返回的肯定是-1，
+        // 需要判断当前值是不是NaN，第一次找到NaN之后就把flag设为false，下次再找到NaN就不用把它push进arr
+        for (var i = 0; i < this.length; i++) {
+            if (resArr.indexOf(this[i]) == -1) {
+                if (this[i] != this[i]) {//排除NaN
+                    if (flag) {
+                        resArr.push(this[i]);
+                        flag = false;
+                    }
+                } else {
+                    resArr.push(this[i]);
+                }
+            }
+        }
+        return resArr;
+    }
+</script>
+
 
 
 

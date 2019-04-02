@@ -119,7 +119,45 @@ namespace({a: {test: 1, b: 2}}, 'a.b.c.d')
     }
 </script>
 
+<!--5.用 JavaScript 实现斐波那契数列函数,返回第n个斐波那契数。 f(1) = 1, f(2) = 1 等
+斐波那契数列:以递推的方法定义：F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n>=3，n∈N*）-->
+<script>
+    //方法一:递归
+    function fibonacci(n) {
+      return n<=2?1:fibonacci(n-1)+fibonacci(n-2);
+         //条件表达式？表达式1：表达式2。
+        // 说明：问号前面的位置是判断的条件，判断结果为bool型，为true时调用表达式1，为false时调用表达式2。
+    }
+</script>
+<script>
+    //方法二
+    function fibonacci(n) {
+     if (n==1||n==2){
+         return 1;
+     };
+      return fibonacci(n-1)+fibonacci(n-2);
+    }
+</script>
 
+
+<!--6.统计字符串中每个字符的出现频率，返回一个 Object，key 为统计字符，value 为出现频率
+1. 不限制 key 的顺序
+2. 输入的字符串参数不会为空
+3. 忽略空白字符
+输入
+'hello world'
+输出
+{h: 1, e: 1, l: 3, o: 2, w: 1, r: 1, d: 1}-->
+<script>
+    //方法一
+    function count(str) {
+        var obj = {};
+        str.replace(/\S/g, function (s) {
+            !obj[s] ? obj[s] = 1 : obj[s]++;
+        })
+        return obj;
+    }
+</script>
 
 
 

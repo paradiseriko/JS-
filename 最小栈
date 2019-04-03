@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最小栈</title>
+</head>
+<body>
+<!--设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈
+push(x) -- 将元素 x 推入栈中。
+pop() -- 删除栈顶的元素。
+top() -- 获取栈顶元素。
+getMin() -- 检索栈中的最小元素。
+示例:
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();  返回 -3.
+minStack.pop();
+minStack.top();     返回 0.
+minStack.getMin(); 返回 -2.-->
+
+<script>
+    /**
+     * initialize your data structure here.
+     */
+    var MinStack = function() {
+        this.stack=[];
+        this.min=[];//用另外一个数组保存较小的值，还有一个数组保存小的值的下标。每次pop和push的时候判断。这样最小值就不用重新遍历。
+        this.minindex=[];
+    };
+
+    /**
+     * @param {number} x
+     * @return {void}
+     */
+    MinStack.prototype.push = function(x) {
+        this.stack.push(x);
+        if(this.min.length===0||this.getMin()>x){
+            this.min.push(x);
+            this.minindex.push(this.stack.length-1)
+        }
+    };
+
+    /**
+     * @return {void}
+     */
+    MinStack.prototype.pop = function() {
+      if (this.top()===this.getMin()&&this.minindex[this.minindex.length-1]===this.stack.length-1){
+         this.min.pop();
+         this.minindex.pop();
+      }
+      this.stack.pop();
+    };
+
+    /**
+     * @return {number}
+     */
+    MinStack.prototype.top = function() {
+      return this.stack[this.stack.length-1];
+    };
+
+    /**
+     * @return {number}
+     */
+    MinStack.prototype.getMin = function() {
+     return this.min[(this.min.length-1)];
+    };
+
+    /**
+     * Your MinStack object will be instantiated and called as such:
+     * var obj = new MinStack()
+     * obj.push(x)
+     * obj.pop()
+     * var param_3 = obj.top()
+     * var param_4 = obj.getMin()
+     */
+
+</script>
+
+
+</body>
+</html>

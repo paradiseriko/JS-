@@ -16,11 +16,11 @@ isEmpty(): 检查循环队列是否为空。
 isFull(): 检查循环队列是否已满。-->
 
 <!--使用双指针记录队列元素位置，双指针初始化为-1，删除元素时验证指针是否重合，是则初始化队列-->
+<script>
 /**
 * Initialize your data structure here. Set the size of the queue to be k.
 * @param {number} k
 */
-<script>
 let MyCircularQueue = function(k) {
 this.length=k;
 this.tail=-1;
@@ -29,12 +29,12 @@ this.queue=[];
 };
 </script>
 
+<script>
 /**
 * Insert an element into the circular queue. Return true if the operation is successful.
 * @param {number} value
 * @return {boolean}
 */
-<script>
 MyCircularQueue.prototype.enQueue = function(value) {
 if(this.isFull())return false;
 if(this.isEmpty())this.head=0;
@@ -44,11 +44,13 @@ return true;
 };
 </script>
 
+
+<script>
 /**
 * Delete an element from the circular queue. Return true if the operation is successful.
 * @return {boolean}
 */
-<script>MyCircularQueue.prototype.deQueue = function() {
+MyCircularQueue.prototype.deQueue = function() {
 if(!this.isEmpty()){
 if(this.head===this.tail){
 this.head=-1;
@@ -62,48 +64,54 @@ return false;
 };
 </script>
 
+<script>
 /**
 * Get the front item from the queue.
 * @return {number}
 */
-<script>
 MyCircularQueue.prototype.Front = function() {
 if(!this.isEmpty())return this.queue[this.head];
 return -1;
 };
 </script>
 
+
+<script>
 /**
 * Get the last item from the queue.
 * @return {number}
 */
-<script>
 MyCircularQueue.prototype.Rear = function() {
 if(!this.isEmpty())return this.queue[this.tail];
 return -1;
 };
 </script>
 
+
+<script>
 /**
 * Checks whether the circular queue is empty or not.
 * @return {boolean}
 */
-<script>
+
 MyCircularQueue.prototype.isEmpty = function() {
 return this.head===-1;
 };
 </script>
 
+
+<script>
 /**
 * Checks whether the circular queue is full or not.
 * @return {boolean}
 */
-<script>
+
 MyCircularQueue.prototype.isFull = function() {
 return (this.tail+1)%this.length===this.head;
 };
 </script>
 
+<script>
 /**
 * Your MyCircularQueue object will be instantiated and called as such:
 * var obj = Object.create(MyCircularQueue).createNew(k)
@@ -114,6 +122,6 @@ return (this.tail+1)%this.length===this.head;
 * var param_5 = obj.isEmpty()
 * var param_6 = obj.isFull()
 */
-
+</script>
 </body>
 </html>

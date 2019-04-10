@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二进制求和</title>
+</head>
+<body>
+<!--给定两个二进制字符串，返回他们的和（用二进制表示）。
+输入为非空字符串且只包含数字 1 和 0。
+
+示例 1:
+输入: a = "11", b = "1"
+输出: "100"
+示例 2:
+输入: a = "1010", b = "1011"
+输出: "10101"-->
+<script>
+//输入的是二进制字符串，要先转化为十进制字符串，再把两个十进制字符串进行相加，结果转换为二进制
+
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function(a, b) {
+    var res=[];
+    var num=0;
+    var addOne=0;//是否进位
+    //字符串对齐
+    while (a.length<b.length){
+          a=0+a;
+    };
+    while (b.length<a.length){
+        b=0+b;
+    };
+    for (var i=a.length-1;i>=0;i--){
+         num=parseInt(a[i])+parseInt(b[i])+addOne;//如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数。
+         if (num>=2){
+             res[i]=num-2;
+             addOne=1;
+         }else {
+             res[i]=num;
+             addOne=0;
+         };
+    };
+    if (addOne>0) {
+         res.unshift(1);
+    };
+    return res.join('');
+};
+</script>
+
+</body>
+</html>

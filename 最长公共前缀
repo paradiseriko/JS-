@@ -31,9 +31,14 @@
         };
         for (let i=0;i<strs[0].length;i++){
             let reg=new  RegExp("^"+strs[0].slice(0,i+1));
+             //RegExp 是正则表达式的缩写。
+            //第一个参数是一个字符串，指定了正则表达式的模式或其他正则表达式。如果它是正则表达式，而不是字符串，则必须省略该参数。
+            //第二个参数 是一个可选的字符串，包含属性 "g"、"i" 和 "m"，分别用于指定全局匹配、区分大小写的匹配和多行匹配。ECMAScript 标准化之前，不支持 m 属性。
             let flag=true;
             strs.forEach(str=> {
                 if (!str.match(reg)) {
+                //match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+                //规定要匹配的模式的 RegExp 对象。如果该参数不是 RegExp 对象，则需要首先把它传递给 RegExp 构造函数，将其转换为 RegExp 对象。
                     flag = false;
                 };
             });

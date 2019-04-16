@@ -54,16 +54,41 @@
     //方法二
     var rotate = function(nums, k) {
         k=k%nums.length;
-        let start=0;
-
+        for (let i=0;i<k;i++){
+             let tail=nums.pop();
+             nums.unshift(tail);
+        }
     };
 </script>
 
+<script>
+    //方法三
+    var rotate = function(nums, k) {
+        k=k%nums.length;
+        for (let i=0;i<k;i++){
+           nums.splice(0,0,nums.splice(nums.length-1,1));
+        }
+    };
+</script>
 
-
-
-
-
+<script>
+    //方法四
+    var rotate = function(nums, k) {
+        k = k % nums.length;
+        let count = 0;
+        for (let start = 0; count < nums.length; start++) {
+            let cur = start;
+            let prevEl = nums[start];
+            do {
+                cur = (cur + k) % nums.length;
+                let tmp = nums[cur];
+                nums[cur] = prevEl;
+                prevEl = tmp;
+                count += 1;
+            } while (start !== cur);
+        }
+    };
+</script>
 
 </body>
 </html>

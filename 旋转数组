@@ -33,7 +33,7 @@
      */
     //方法一
     var rotate = function(nums, k) {
-           const  reverse=(start,end)=>{
+           const  reverse=(start,end)=>{/const 声明常量
                while (start<end){
                      const  tmp=nums[start];
                      nums[start++]=nums[end];
@@ -55,8 +55,8 @@
     var rotate = function(nums, k) {
         k=k%nums.length;
         for (let i=0;i<k;i++){
-             let tail=nums.pop();
-             nums.unshift(tail);
+             let tail=nums.pop();//pop() 方法用于删除并返回数组的最后一个元素
+             nums.unshift(tail);//unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
         }
     };
 </script>
@@ -79,7 +79,8 @@
         for (let start = 0; count < nums.length; start++) {
             let cur = start;
             let prevEl = nums[start];
-            do {
+            do {//do...while 循环是 while 循环的变体。在检查while()条件是否为真之前，该循环首先会执行一次do{}之内的语句，
+                // 然后在while()内检查条件是否为真，如果条件为真的话，就会重复do...while这个循环,直至while()为假。
                 cur = (cur + k) % nums.length;
                 let tmp = nums[cur];
                 nums[cur] = prevEl;

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回文链表</title>
+</head>
+<body>
+<!--请判断一个链表是否为回文链表。
+
+示例 1:
+输入: 1->2
+输出: false
+示例 2:
+输入: 1->2->2->1
+输出: true-->
+
+<script>
+    /**
+     * Definition for singly-linked list.
+     * function ListNode(val) {
+     *     this.val = val;
+     *     this.next = null;
+     * }
+     */
+    /**
+     * @param {ListNode} head
+     * @return {boolean}
+     */
+    //方法一
+    var isPalindrome = function(head) {
+        if (!head) return true;
+        let slow = head, fast = head, prev = null;
+        while (fast && fast.next && fast.next.next) {// 利用快慢指针寻找链表的中点
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        while (slow) {// 反转后半部分链表
+            let next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+        while (head && prev) {// 迭代比较
+            if (head.val !== prev.val) return false;
+            head = head.next;
+            prev = prev.next;
+        }
+        return true;
+    };
+
+    //方法二
+    var isPalindrome = function(head) {
+        if (!head) return true;
+        let helper = [];
+        while (head) {
+            helper.push(head.val);
+            head = head.next;
+        }
+        let left = 0, right = helper.length - 1;
+        while (left < right) {
+            if (helper[left++] !== helper[right--]) return false;
+        }
+        return true;
+    };
+
+</script>
+
+</body>
+</html>

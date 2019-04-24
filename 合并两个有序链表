@@ -25,7 +25,7 @@
      * @return {ListNode}
      */
     var mergeTwoLists = function(l1, l2) {
-        var head=new ListNode(-Infinity);
+        var head=new ListNode(-Infinity);//Infinity 属性用于存放表示正无穷大的数值
         var cur=head;
         var p1=l1,p2=l2;
         while (p1!==null&&p2!==null){

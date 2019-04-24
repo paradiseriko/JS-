@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>只出现一次的数字</title>
+</head>
+<body>
+<!--给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+示例 1:
+输入: [2,2,1]
+输出: 1
+示例 2:
+输入: [4,1,2,1,2]
+输出: 4-->
+<script>
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    //方法一
+    var singleNumber = function(nums) {
+         let res=0;
+         nums.forEach(num=>{res ^=num});//^=是异或运算，a^=b相当于：a=a^b,相同取0，不同取1.
+         return res;
+    };
+
+
+    //方法二
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    var singleNumber = function(nums) {
+        if (!nums || !nums.length) return null;
+        const helper = [];
+        for (let i = 0, len = nums.length; i < len; i++) {
+            const index = helper.indexOf(nums[i]);
+            if (index < 0) {
+                helper.push(nums[i]);
+            } else {
+                helper.splice(index, 1);
+            };
+        };
+        return helper[0];
+    };
+</script>
+</body>
+</html>

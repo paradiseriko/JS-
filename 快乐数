@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快乐数</title>
+</head>
+<body>
+<!--编写一个算法来判断一个数是不是“快乐数”。
+一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。
+如果可以变为 1，那么这个数就是快乐数。-->
+
+
+<script>
+    /**
+     * @param {number} n
+     * @return {boolean}
+     */
+    var isHappy = function(n) {
+        let set=new Set();
+        while (n!==1){
+            let ret=0;
+            let num=0;
+            while (n){
+                ret =n%10;
+                num+=ret*ret;//num=num+ret*ret
+                n=Math.floor(n/10);
+            };
+           n=num;
+           if (!set.has(num)){
+                set.add(num);
+           }else {
+               break;//break语句会使运行的程序立刻退出包含在最内层的循环或者退出一个switch语句。
+           };
+        };
+        return n===1;
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串中的第一个唯一字符</title>
+</head>
+<body>
+<!--给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+
+案例:
+s = "leetcode"
+返回 0.
+s = "loveleetcode",
+返回 2.
+注意事项：您可以假定该字符串只包含小写字母。-->
+
+<script>
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    var firstUniqChar = function(s) {
+        let len=s.length;
+        for (let i=0;i<len;i++){
+            //lastIndexOf()方法可返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索
+            //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+            if (s.lastIndexOf(s[i])===s.indexOf(s[i])){
+                return i;
+            };
+        };
+        return -1;
+    };
+</script>
+
+</body>
+</html>

@@ -66,7 +66,7 @@
     //方法三 排序 双指针
     var intersect = function(nums1, nums2) {
         const sortFunc=(pre,cur)=>pre-cur;
-        nums1.sort(sortFunc);
+        nums1.sort(sortFunc);//sort() 方法用于对数组的元素进行排序。
         nums2.sort(sortFunc);
         const res=[];
         let i=0;j=0;

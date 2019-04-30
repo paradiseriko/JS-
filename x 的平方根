@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>x 的平方根</title>
+</head>
+<body>
+<!--实现 int sqrt(int x) 函数。
+计算并返回 x 的平方根，其中 x 是非负整数。
+由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。
+
+示例 1:
+输入: 4
+输出: 2
+示例 2:
+输入: 8
+输出: 2
+说明: 8 的平方根是 2.82842...,
+     由于返回类型是整数，小数部分将被舍去。
+-->
+
+<script>
+    /**
+     * @param {number} x
+     * @return {number}
+     */
+    //方法一
+    var mySqrt = function(x) {
+        //Math.floor(x)表示将x向下取整
+       return Math.floor(Math.sqrt(x));//sqrt() 方法可返回一个数的平方根。
+    };
+
+    //方法二
+    var mySqrt = function(x) {
+        return Math.floor(x **0.5);//ES6方式，等价于ES5的Math.pow(x,0.5),即x的0.5次方
+    };
+
+    //方法三
+    var mySqrt = function(x) {
+         var init=1;
+         var tmp=1;
+         while (tmp<=x){
+              init+=1;
+              tmp=Math.pow(init,2);
+         };
+         return init-1;
+    };
+</script>
+</body>
+</html>

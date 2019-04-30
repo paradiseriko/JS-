@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存在重复元素 II</title>
+</head>
+<body>
+<!--给定一个整数数组和一个整数 k，判断数组中是否存在两个不同的索引 i 和 j，使得 nums [i] = nums [j]，并且 i 和 j 的差的绝对值最大为 k。
+
+示例 1:
+输入: nums = [1,2,3,1], k = 3
+输出: true
+示例 2:
+输入: nums = [1,0,1,1], k = 1
+输出: true
+示例 3:
+输入: nums = [1,2,3,1,2,3], k = 2
+输出: false-->
+
+obj[nums[i]]=true;
+<script>
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {boolean}
+     */
+
+    var containsNearbyDuplicate = function(nums, k) {
+       const map=new Map();
+       for (i=0;i<nums.length;i++){
+           let j=map.get(nums[i]);
+           if (j!==undefined&&Math.abs(i-j)<=k){//abs() 方法可返回数的绝对值。
+              return true;
+           };
+           map.set(nums[i],i);//Set对象是值的集合，你可以按照插入的顺序迭代它的元素。 Set中的元素只会出现一次，即 Set 中的元素是唯一的。
+       };
+       return false;
+    };
+</script>
+</body>
+</html>

@@ -39,7 +39,7 @@
             map[list1[i]] ?'' : map[list1[i]] = i;
         };
         var result=[];
-        var sum=9999999;
+        var sum=9999999;//设置一个正无穷的树，用一个偏大且不可能发生的值表示
         for (i=0;i<list2.length;i++){
             if (map[list2[i]]>=0){
                if (map[list2[i]]+i<sum){
